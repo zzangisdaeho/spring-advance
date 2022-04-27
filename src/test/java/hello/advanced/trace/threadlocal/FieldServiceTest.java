@@ -25,13 +25,13 @@ public class FieldServiceTest {
 //        sleep(2000); //동시성 문제 발생X
          sleep(100); //동시성 문제 발생O
 
-        synchronized (threadA){
-            try {
-                threadA.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        synchronized (threadA){
+//            try {
+//                threadA.wait();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
 
         threadB.start(); //B실행

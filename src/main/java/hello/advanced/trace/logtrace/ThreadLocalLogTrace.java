@@ -13,6 +13,10 @@ public class ThreadLocalLogTrace implements LogTrace {
 
     /**
      * ThreadLocal은 내부에 thread를 key로 하는 value를 갖고있기 때문에 remove시키지 않으면 메모리 누수의 원인이 된다.
+     * 누수는 안된다한다 Garbage collector가 쓰레드가 사라지면 수거해간다 한다;;
+     * 하지만 서블릿은 내부에 thread pool을 구성하고, request가 올때마다 thread를 할당하는 방식이다.
+     * 고로 remove해주지 않으면 쓰레드 풀로 돌아간 쓰레드가 request에 재할당 받았을때, ThreadLocal에 값을 갖고 할당받을 위험이있다.
+     * 오작동의 원인이 되므로 ThreadLocal을 사용하고나면 remove 해주자!
      */
     private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>();
 
